@@ -1,59 +1,138 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Mi Marca</title>
+<meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ODISEA</title>
+
+
 <style>
 body {
 margin: 0;
 overflow: hidden;
-font-family: Arial;
+font-family: Arial, sans-serif;
+color: white;
+background: black;
 }
 
+/* VIDEO DE FONDO */
 video {
 position: fixed;
-right: 0;
-bottom: 0;
-min-width: 100%;
-min-height: 100%;
+top: 0;
+left: 0;
+width: 100%;
+
+height: 100%;
 object-fit: cover;
 z-index: -1;
+filter: brightness(0.45) contrast(1.1);
 }
 
-.content {
+/* CENTRO */
+
+.container {
 position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-color: white;
 text-align: center;
+width: 90%;
 }
 
-img {
-width: 200px;
-border-radius: 20px;
-margin-bottom: 15px;
+.title {
+font-size: 44px;
+font-weight: bold;
+letter-spacing: 6px;
+text-transform: uppercase;
+}
+
+.model {
+margin-top: 10px;
+font-size: 18px;
+opacity: 0.9;
+}
+
+.verified {
+margin-top: 25px;
+font-size: 13px;
+letter-spacing: 2px;
+text-transform: uppercase;
+opacity: 0.85;
+}
+
+.product {
+font-size: 12px;
+opacity: 0.6;
+margin-top: 5px;
+}
+
+/* BOTÓN PREMIUM */
+.btn {
+margin-top: 30px;
+padding: 12px 22px;
+border-radius: 12px;
+border: 1px solid white;
+background: rgba(255,255,255,0.1);
+color: white;
+font-weight: bold;
+letter-spacing: 1px;
+backdrop-filter: blur(8px);
+}
+
+.btn:active {
+transform: scale(0.97);
+}
+
+/* ANIMACIÓN SUAVE */
+.container {
+animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translate(-50%, -45%); }
+to { opacity: 1; transform: translate(-50%, -50%); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO DE FONDO -->
+<!-- VIDEO -->
+
 <video autoplay muted loop playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
 
-<!-- MUSICA -->
-<audio autoplay loop>
+<!-- AUDIO (NO autoplay por restricciones móviles) -->
+<audio id="bgmusic" loop>
+
 <source src="audio.mp3" type="audio/mp3">
 </audio>
 
-<div class="content">
-<img src="pedido.jpg">
-<h2>Gracias por tu compra</h2>
+<!-- CONTENIDO -->
+
+<div class="container">
+<div class="title">ODISEA</div>
+<div class="model">Model: Rockstar</div>
+
+<div class="verified">AUTHENTICITY VERIFIED</div>
+<div class="product">Original Product</div>
+
+<button class="btn" onclick="startExperience()">
+TAP TO EXPERIENCE
+</button>
 </div>
+
+<script>
+function startExperience() {
+const audio = document.getElementById("bgmusic");
+audio.play().catch(e => console.log("Audio blocked:", e));
+
+// opcional: quitar botón después de iniciar
+document.querySelector(".btn").style.display = "none";
+}
+</script>
 
 </body>
 </html>
