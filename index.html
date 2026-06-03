@@ -1,11 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ODISEA</title>
-
 
 <style>
 body {
@@ -22,14 +20,13 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-
 height: 100%;
 object-fit: cover;
 z-index: -1;
 filter: brightness(0.45) contrast(1.1);
 }
 
-/* CENTRO */
+/* CONTENIDO */
 
 .container {
 position: absolute;
@@ -38,10 +35,17 @@ left: 50%;
 transform: translate(-50%, -50%);
 text-align: center;
 width: 90%;
+animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translate(-50%, -45%); }
+to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 .title {
-font-size: 44px;
+font-size: 46px;
+
 font-weight: bold;
 letter-spacing: 6px;
 text-transform: uppercase;
@@ -67,10 +71,11 @@ opacity: 0.6;
 margin-top: 5px;
 }
 
-/* BOTÓN PREMIUM */
+/* BOTÓN */
 .btn {
 margin-top: 30px;
-padding: 12px 22px;
+padding: 14px 24px;
+
 border-radius: 12px;
 border: 1px solid white;
 background: rgba(255,255,255,0.1);
@@ -78,20 +83,12 @@ color: white;
 font-weight: bold;
 letter-spacing: 1px;
 backdrop-filter: blur(8px);
+cursor: pointer;
 }
 
 .btn:active {
 transform: scale(0.97);
-}
 
-/* ANIMACIÓN SUAVE */
-.container {
-animation: fadeIn 1.5s ease-out;
-}
-
-@keyframes fadeIn {
-from { opacity: 0; transform: translate(-50%, -45%); }
-to { opacity: 1; transform: translate(-50%, -50%); }
 }
 </style>
 </head>
@@ -99,19 +96,17 @@ to { opacity: 1; transform: translate(-50%, -50%); }
 <body>
 
 <!-- VIDEO -->
-
 <video autoplay muted loop playsinline>
 <source src="video.mp4" type="video/mp4">
 </video>
 
-<!-- AUDIO (NO autoplay por restricciones móviles) -->
-<audio id="bgmusic" loop>
+<!-- AUDIO -->
+<audio id="bgmusic" loop preload="auto">
+<source src="audio.mp3" type="audio/mpeg">
 
-<source src="audio.mp3" type="audio/mp3">
 </audio>
 
 <!-- CONTENIDO -->
-
 <div class="container">
 <div class="title">ODISEA</div>
 <div class="model">Model: Rockstar</div>
@@ -119,19 +114,26 @@ to { opacity: 1; transform: translate(-50%, -50%); }
 <div class="verified">AUTHENTICITY VERIFIED</div>
 <div class="product">Original Product</div>
 
-<button class="btn" onclick="startExperience()">
+<button class="btn" id="startBtn">
+
 TAP TO EXPERIENCE
 </button>
 </div>
 
+<!-- SCRIPT DE AUDIO (iPhone FIX REAL) -->
 <script>
-function startExperience() {
-const audio = document.getElementById("bgmusic");
-audio.play().catch(e => console.log("Audio blocked:", e));
+document.getElementById("startBtn").addEventListener("click", async function () {
 
-// opcional: quitar botón después de iniciar
-document.querySelector(".btn").style.display = "none";
+const audio = document.getElementById("bgmusic");
+
+try {
+await audio.play();
+this.style.display = "none";
+} catch (err) {
+alert("Activa el sonido o revisa el modo silencio del iPhone");
+console.log(err);
 }
+});
 </script>
 
 </body>
