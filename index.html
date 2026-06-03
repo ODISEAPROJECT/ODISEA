@@ -1,49 +1,58 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ODISEA</title>
-
+<title>Mi Marca</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{
-margin:0;
-background:black;
-color:white;
-font-family:Arial,sans-serif;
-text-align:center;
-overflow:hidden;
+body {
+margin: 0;
+overflow: hidden;
+font-family: Arial;
 }
 
-video{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-1;
+video {
+position: fixed;
+right: 0;
+bottom: 0;
+min-width: 100%;
+min-height: 100%;
+object-fit: cover;
+z-index: -1;
 }
 
-.box{
-margin-top:35vh;
-background:rgba(0,0,0,.5);
-padding:30px;
+.content {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
+text-align: center;
 }
 
-h1{
-font-size:40px;
-letter-spacing:5px;
+img {
+width: 200px;
+border-radius: 20px;
+margin-bottom: 15px;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
-<h1>ODISEA</h1>
-<p>AUTHENTICITY VERIFIED</p>
-<p>Original Product</p>
+<!-- VIDEO DE FONDO -->
+<video autoplay muted loop playsinline>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<!-- MUSICA -->
+<audio autoplay loop>
+<source src="audio.mp3" type="audio/mp3">
+</audio>
+
+<div class="content">
+<img src="pedido.jpg">
+<h2>Gracias por tu compra</h2>
 </div>
 
 </body>
